@@ -1,0 +1,80 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+    <div id="new-post-view">
+        <div class="container">
+            <form id="newpost" action="{% url 'newpost' %}" method="post">
+                {% csrf_token %}
+                <input type="textarea" class="form-control" id="content" name="content" placeholder="What are you thinking?" maxlength="400" rows="4"> <br>
+                <input type="submit" class="publish-btn" id="publish-button" value="Publish">
+                {% if message %}
+                <p style="color: crimson;">{{message}}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div id="posts-view">
+        {% for post in page_obj %}
+        <div class="post-container" id="post-{{post.id}}">
+            <p name="username" id="username"><a href="{%url 'profile' post.user %}" class="username"><b>{{post.user}}</b></a></p>
+            <p class="timestamp">{{post.timestamp}}</p>
+            <p class="content" id="post-content-{{post.id}}">{{post.content}}</p>
+
+            <hr class="solid">
+            
+            {% if user.is_authenticated %}
+
+                {% if post in liked_posts %}
+                    <button class="btn mr-1 d-inline-block" style="color: red; font-size: larger;" id="like-btn-{{post.id}}" onclick="like('{{post.id}}')">♥</button>
+                {% else %}
+                    <button class="btn mr-1 d-inline-block" style="color: darkgray; font-size: larger;" id="like-btn-{{post.id}}" onclick="like('{{post.id}}')">♥</button>
+                {% endif %}
+            {% endif %}
+                <p class="likecount" id="like-count-{{post.id}}" style="display: inline;">{{post.likes}} like(s)</p>
+
+            {% if post.user.id == user.id%}
+                <button id="edit" onclick="edit('{{post.id}}')" class="edit-btn">Edit post</button>
+                <textarea class="form-control mb-2" id="edit-box-{{post.id}}" name="edit-box" style="display: none;" >{{post.content}}</textarea>
+                <button id= "edit-btn-{{post.id}}" class="publish-btn" style="display: none;">Save</button>
+            {% endif%}
+
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div class="text-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            {% if page_obj.has_previous %}
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+            
+          </li>
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+          {% endif %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+          <li class="page-item">
+            
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+            {% endif %}
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+{% endblock %}
+

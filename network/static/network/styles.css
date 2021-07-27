@@ -1,0 +1,103 @@
+.post-container {
+    background-color: white;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 500px;
+    overflow:hidden;
+}
+
+.container {
+    background-color: white;
+    border-style: solid;
+    border-color: plum;
+    border-width: 1px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 500px;
+    overflow:hidden;
+}
+
+.timestamp {
+    color: gray;
+    font-size: small;
+}
+
+.username {
+    color:rgb(159, 0, 180);
+    font-size:large;
+}
+
+.body {
+    background-color: rgb(240, 240, 240);
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.edit-btn {
+    display: inline; 
+    margin-left: 10px; 
+    font-size: small;
+    border-width: 0px;
+    background-color: white;
+}
+
+.solid {
+    border-top: 1px solid rgb(233, 233, 233);
+}
+
+.form-control {
+
+    outline: none;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.publish-btn {
+    background-color: rgb(159, 0, 180);
+    color: white;
+    width: auto;
+    border-width: 0px;
+    border-radius: 4px;
+    float:right;
+}
+
+.profile-name {
+    color: rgb(159, 0, 180);
+}
+
+.follow-btn {
+    background-color: rgb(159, 0, 180);
+    color: white;
+    width: auto;
+    border-width: 0px;
+    border-radius: 4px;
+    font-size: large;
+}
+
+.profile-info{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+ul li {
+    display: inline-block;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
